@@ -246,7 +246,46 @@ buttons.forEach(button => {
 
         button.style.transform = "translateY(0) scale(1)";
 
+    });const confirmBtn = document.getElementById("confirmBtn");
+const thankYou = document.getElementById("thankYou");
+
+if (confirmBtn) {
+
+    confirmBtn.addEventListener("click", async function () {
+
+        const today = new Date();
+
+        const data = {
+            guest: guestName,
+            invite: inviteNumber,
+            rsvp: "Coming",
+            date: today.toLocaleDateString(),
+            time: today.toLocaleTimeString()
+        };
+
+        try {
+
+            await fetch("https://script.google.com/macros/s/AKfycbxShPbmmN_IySujQFFa1oAyCKeB0DQpyFJV5huQ7W5_sinXKXKPvW70jF-VRfCPCtGBOw/exec", {
+
+                method: "POST",
+
+                body: JSON.stringify(data)
+
+            });
+
+            confirmBtn.style.display = "none";
+
+            thankYou.style.display = "block";
+
+        } catch (err) {
+
+            alert("Unable to save RSVP. Please try again.");
+
+        }
+
     });
+
+}
 
 });
 
