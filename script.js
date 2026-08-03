@@ -246,73 +246,61 @@ buttons.forEach(button => {
 
         button.style.transform = "translateY(0) scale(1)";
 
-    });const confirmBtn = document.getElementById("confirmBtn");
+    });
+
+});
+   
+//===============================
+// CONSOLE MESSAGE
+//===============================
+
+console.log("Nightlifer Website Loaded Successfully");
+const confirmBtn = document.getElementById("confirmBtn");
 const thankYou = document.getElementById("thankYou");
 
 if (confirmBtn) {
 
-    confirmBtn.addEventListener("click", async function () {
+    confirmBtn.addEventListener("click", async () => {
 
-        const today = new Date();
+        const now = new Date();
 
         const data = {
-            guest: guestName,
-            invite: inviteNumber,
+            guest: guest,
+            invite: "NL-2026-" + randomNumber,
             rsvp: "Coming",
-            date: today.toLocaleDateString(),
-            time: today.toLocaleTimeString()
+            date: now.toLocaleDateString(),
+            time: now.toLocaleTimeString()
         };
 
         try {
 
-            await fetch("https://script.google.com/macros/s/AKfycbxShPbmmN_IySujQFFa1oAyCKeB0DQpyFJV5huQ7W5_sinXKXKPvW70jF-VRfCPCtGBOw/exec", {
+await fetch("https://script.google.com/macros/s/AKfycbyYJoFm8Lzm6P3GH7R6dQe60-Bsp--ey26TXSwhcD1uiKinIRcj6g0trXOe44aLOOq4iA/exec", {
 
                 method: "POST",
 
+mode: "no-cors",
+
+headers: {
+    "Content-Type": "application/json"
+},
                 body: JSON.stringify(data)
 
             });
 
-            confirmBtn.style.display = "none";
+            confirmBtn.innerHTML = "✔ RSVP CONFIRMED";
+
+            confirmBtn.style.background = "#00c853";
 
             thankYou.style.display = "block";
 
-        } catch (err) {
+        } catch (error) {
 
-            alert("Unable to save RSVP. Please try again.");
+            console.error(error);
+
+            alert("Unable to save RSVP.");
 
         }
 
     });
 
 }
-
-});
-
-
-//===============================
-// CONSOLE MESSAGE
-//===============================
-
-console.log("Nightlifer Website Loaded Successfully");
-// RSVP
-
-const confirmBtn = document.getElementById("confirmBtn");
-
-const thankYou = document.getElementById("thankYou");
-
-confirmBtn.addEventListener("click", () => {
-
-    confirmBtn.innerHTML = "✔ I'M COMING";
-
-    confirmBtn.style.background = "#00c853";
-
-    thankYou.style.display = "block";
-
-});const downloadBtn = document.getElementById("downloadInvite");
-
-downloadBtn.addEventListener("click", () => {
-
-    window.print();
-
-});
