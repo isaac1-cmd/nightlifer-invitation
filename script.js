@@ -13,8 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         viewer.style.display = "block";
 
-        menu.scrollIntoView({
-            behavior: "smooth"
+        viewer.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
         });
 
     });
