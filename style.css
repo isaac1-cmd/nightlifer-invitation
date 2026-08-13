@@ -255,7 +255,7 @@ body {
 ========================================== */
 
 .menu-viewer {
-    display: none;
+    display: block;
 
     width: 100%;
 
